@@ -22,10 +22,10 @@ flush privileges;
 ### Database Configuration
 `application.properties`:
 ``` properties
-spring.datasource.url=jdbc:mysql://localhost:33060/kotlin_springboot_auth?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:33060/kotlin_springboot_auth
 spring.datasource.username=springboot
 spring.datasource.password=spring123456
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 spring.jpa.properties.hibernate.hbm2ddl.auto=update
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
