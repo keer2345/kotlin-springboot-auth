@@ -2,6 +2,9 @@
 
 Learn how to login with Kotlin with Java Spring Boot Framework and handle the JWT Token. We will Login using JWT( JSON Web Token ) which is the standard method for SPA Authentications. We will not use the traditional "Bearer method" but instead we will login using HttpOnly cookies which is a more secure authentication.
 
+## Materials
+- [Spring Boot Security Auto-Configuration](https://www.baeldung.com/spring-boot-security-autoconfiguration)
+- [Conditionally Disabling or Overriding Spring Boot Security Auto-Configuration](https://ravthiru.medium.com/conditionally-disabling-or-overriding-spring-boot-security-auto-configuration-94f67947334c)
 
 ## Spring Boot Dependencies
 - Spring Web
@@ -35,4 +38,31 @@ spring.jpa.show-sql= true
 ## Run Project
 ``` shell
 ./gradlew bootRun
+```
+## API Test
+I use [hoppscotch](https://github.com/hoppscotch/hoppscotch) (postwoman) to test API, or 
+alternative with [Awesome API Tools](https://github.com/elangosundar/awesome-api-tools).
+
+- Add `@CrossOrigin` to *Controller* class:
+``` kotlin
+@RestController
+@RequestMapping("api")
+@CrossOrigin
+class AuthController(private val userService: UserService) {
+    
+    // ...
+}
+```
+- Or, add `@CrossOrigin` to _*Mapping_ function / method:
+``` kotlin
+@RestController
+@RequestMapping("api")
+class AuthController(private val userService: UserService) {
+
+    @PostMapping("register")
+    @CrossOrigin
+    fun register(@RequestBody user: User): ResponseEntity<User> = ResponseEntity.ok(this.userService.save(user))
+    
+    // ...
+}
 ```
