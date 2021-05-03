@@ -1,5 +1,6 @@
 package com.keer.auth.models
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
@@ -12,5 +13,6 @@ data class User(
     @Column(unique = true)
     var email: String = "",
     @Column
+    @JsonIgnore
     var password: String = ""
 )
