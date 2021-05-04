@@ -5,16 +5,29 @@ import com.keer.auth.services.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.*
+import javax.servlet.http.HttpServletResponse
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin
 class AuthController(private val userService: UserService) {
     @PostMapping("register")
-    fun register(@RequestBody user: User): ResponseEntity<User> {
-        val encodePassword = BCryptPasswordEncoder().encode(user.password)
-        val newUser = user.copy(password = encodePassword)
+    fun register(@RequestBody body: User): ResponseEntity<User> {
+        val encodePassword = BCryptPasswordEncoder().encode(body.password)
+        val user = body.copy(password = encodePassword)
 
-        return ResponseEntity.ok(this.userService.save(newUser))
+        return ResponseEntity.ok(this.userService.save(user))
+    }
+
+    @PostMapping("login")
+    fun login(@RequestBody body: User, response: HttpServletResponse): ResponseEntity<Any> {
+        val user = this.userService.findByEmail(body.email)
+            ?: return ResponseEntity.badRequest().body("User not found!")
+
+        if (!BCryptPasswordEncoder().matches(body.password, user.password)) {
+            return ResponseEntity.badRequest().body("Invalid password!")
+        }
+
+        return ResponseEntity.ok("Login success!")
     }
 }

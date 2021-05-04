@@ -11,6 +11,7 @@ Learn how to login with Kotlin with Java Spring Boot Framework and handle the JW
 - Spring Security
 - Spring Data JPA
 - Mysql Driver
+- `implementation("io.jsonwebtoken:jjwt:0.9.1")`
 
 
 ## Database connection of MySQL 
