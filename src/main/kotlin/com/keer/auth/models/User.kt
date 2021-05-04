@@ -7,14 +7,13 @@ import javax.persistence.*
 data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long?,
+    val id: Long?,
     @Column
-    var name: String = "",
+    val name: String = "",
     @Column(unique = true)
-    var email: String = "",
+    val email: String = "",
     @Column
-//    @JsonIgnore
-    var password: String = ""
+    val password: String = ""
 ) {
     fun comparePassword(password: String): Boolean =
         BCryptPasswordEncoder().matches(password, this.password)

@@ -16,7 +16,7 @@ class AuthController(private val userService: UserService) {
         val encodePassword = BCryptPasswordEncoder().encode(body.password)
         val user = body.copy(password = encodePassword)
 
-        return ResponseEntity.ok(this.userService.save(user))
+        return ResponseEntity.ok(this.userService.save(user).copy(password = "****"))
     }
 
     @PostMapping("login")
@@ -24,9 +24,6 @@ class AuthController(private val userService: UserService) {
         val user = this.userService.findByEmail(body.email)
             ?: return ResponseEntity.badRequest().body("User not found!")
 
-//        if (!BCryptPasswordEncoder().matches(body.password, user.password)) {
-//            return ResponseEntity.badRequest().body("Invalid password!")
-//        }
         if (!user.comparePassword(body.password)) {
             return ResponseEntity.badRequest().body("Invalid password...")
         }
