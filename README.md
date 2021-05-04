@@ -11,8 +11,6 @@ Learn how to login with Kotlin with Java Spring Boot Framework and handle the JW
 - Spring Security
 - Spring Data JPA
 - Mysql Driver
-- `implementation("io.jsonwebtoken:jjwt:0.9.1")`
-
 
 ## Database connection of MySQL 
 ### Databaase Server
@@ -35,6 +33,15 @@ spring.datasource.password=spring123456
 spring.jpa.properties.hibernate.hbm2ddl.auto=update
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.show-sql= true
+```
+
+## Json Web Token (JWT)
+Add dependencies in file `build.gradle.kts`:
+``` kotlin
+dependencies {
+    // ...
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+}
 ```
 
 ## Run Project
@@ -69,3 +76,4 @@ class AuthController(private val userService: UserService) {
     // ...
 }
 ```
+

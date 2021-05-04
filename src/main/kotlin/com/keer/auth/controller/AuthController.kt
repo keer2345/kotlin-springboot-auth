@@ -24,8 +24,11 @@ class AuthController(private val userService: UserService) {
         val user = this.userService.findByEmail(body.email)
             ?: return ResponseEntity.badRequest().body("User not found!")
 
-        if (!BCryptPasswordEncoder().matches(body.password, user.password)) {
-            return ResponseEntity.badRequest().body("Invalid password!")
+//        if (!BCryptPasswordEncoder().matches(body.password, user.password)) {
+//            return ResponseEntity.badRequest().body("Invalid password!")
+//        }
+        if (!user.comparePassword(body.password)) {
+            return ResponseEntity.badRequest().body("Invalid password...")
         }
 
         return ResponseEntity.ok("Login success!")

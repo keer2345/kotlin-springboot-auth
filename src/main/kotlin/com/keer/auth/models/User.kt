@@ -1,5 +1,6 @@
 package com.keer.auth.models
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import javax.persistence.*
 
 @Entity
@@ -14,4 +15,7 @@ data class User(
     @Column
 //    @JsonIgnore
     var password: String = ""
-)
+) {
+    fun comparePassword(password: String): Boolean =
+        BCryptPasswordEncoder().matches(password, this.password)
+}
