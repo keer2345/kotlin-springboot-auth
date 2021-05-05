@@ -7,6 +7,7 @@ import com.keer.auth.models.User
 import com.keer.auth.services.UserService
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.*
@@ -53,5 +54,21 @@ class AuthController(private val userService: UserService) {
         response.addCookie(cookie)
 
         return ResponseEntity.ok(Message("Login success!"))
+    }
+
+    @GetMapping("user")
+    fun user(@CookieValue("jwt") jwt: String): ResponseEntity<Any> {
+        try {
+            if (jwt == null) {
+                return ResponseEntity(Message("unauthenticated"), HttpStatus.UNAUTHORIZED) // 401
+            }
+
+            val body = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt).body
+            val user: User = this.userService.getById(body.issuer.toLong())
+
+            return ResponseEntity.ok(user)
+        } catch (e: Exception) {
+            return ResponseEntity(Message("unauthenticated"), HttpStatus.UNAUTHORIZED) // 401
+        }
     }
 }
