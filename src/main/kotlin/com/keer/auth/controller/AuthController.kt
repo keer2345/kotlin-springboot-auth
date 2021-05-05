@@ -57,7 +57,7 @@ class AuthController(private val userService: UserService) {
     }
 
     @GetMapping("user")
-    fun user(@CookieValue("jwt") jwt: String): ResponseEntity<Any> {
+    fun user(@CookieValue("jwt") jwt: String?): ResponseEntity<Any> {
         try {
             if (jwt == null) {
                 return ResponseEntity(Message("unauthenticated"), HttpStatus.UNAUTHORIZED) // 401
@@ -70,5 +70,15 @@ class AuthController(private val userService: UserService) {
         } catch (e: Exception) {
             return ResponseEntity(Message("unauthenticated"), HttpStatus.UNAUTHORIZED) // 401
         }
+    }
+
+    @PostMapping("logout")
+    fun logout(response: HttpServletResponse): ResponseEntity<Any> {
+        val cookie = Cookie("jwt", "")
+        cookie.maxAge = 0
+
+        response.addCookie(cookie)
+
+        return ResponseEntity(Message("Logout success!"), HttpStatus.OK)
     }
 }
