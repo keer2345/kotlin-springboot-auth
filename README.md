@@ -34,8 +34,19 @@ spring.jpa.properties.hibernate.hbm2ddl.auto=update
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.show-sql= true
 ```
+## Spring Security
+### 
+If we want to ignore *Spring Security*, we could do it in file *KotlinSpringbootAuthApplication.kt* follow here:
+``` kotlin
+// ...
 
-## Json Web Token (JWT)
+@SpringBootApplication(exclude = [SecurityAutoConfiguration::class])
+class KotlinSpringbootAuthApplication
+
+// ...
+```
+
+## Json Web Token ([JWT](https://jwt.io/))
 Add dependencies in file `build.gradle.kts`:
 ``` kotlin
 dependencies {
