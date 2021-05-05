@@ -61,9 +61,11 @@ dependencies {
 ```
 
 ## API Test
-I use [hoppscotch](https://github.com/hoppscotch/hoppscotch) (postwoman) to test API, or 
+Recommend API tools: Postman
+Others: [hoppscotch](https://github.com/hoppscotch/hoppscotch) (postwoman) to test API, or 
 alternative with [Awesome API Tools](https://github.com/elangosundar/awesome-api-tools).
 
+If need to use Cross Requiest:
 - Add `@CrossOrigin` to *Controller* class:
 ``` kotlin
 @RestController
