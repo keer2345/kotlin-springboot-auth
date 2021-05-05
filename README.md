@@ -10,8 +10,7 @@
     - [Database Environment](#database-environment)
     - [Database Configuration](#database-configuration)
 - [Spring Security](#spring-security)
-    - [](#)
-- [Json Web Token ([JWT](https://jwt.io/))](#json-web-token-jwthttpsjwtio)
+- [JSON Web Tokens](#json-web-tokens)
 - [Run Project](#run-project)
 - [API Test](#api-test)
 
@@ -53,7 +52,6 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 spring.jpa.show-sql= true
 ```
 ## Spring Security
-### 
 If we want to ignore *Spring Security*, we could do it in file *KotlinSpringbootAuthApplication.kt* follow here:
 ``` kotlin
 // ...
@@ -64,7 +62,10 @@ class KotlinSpringbootAuthApplication
 // ...
 ```
 
-## Json Web Token ([JWT](https://jwt.io/))
+## JSON Web Tokens
+
+> [JWT](https://jwt.io/)
+
 Add dependencies in file `build.gradle.kts`:
 ``` kotlin
 dependencies {
