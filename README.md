@@ -1,4 +1,22 @@
-# [Kotlin API Authentication using JWT | Spring Boot JWT Authentication](https://youtu.be/kZGtO23Wr3E?list=PLlameCF3cMEtCGZW2djY46Dl20-uSNJba)
+<h1> [Kotlin API Authentication using JWT | Spring Boot JWT Authentication](https://youtu.be/kZGtO23Wr3E?list=PLlameCF3cMEtCGZW2djY46Dl20-uSNJba)</h1>
+
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [Materials](#materials)
+- [Spring Boot Dependencies](#spring-boot-dependencies)
+- [Database connection of MySQL](#database-connection-of-mysql)
+    - [Databaase Server](#databaase-server)
+    - [Database Environment](#database-environment)
+    - [Database Configuration](#database-configuration)
+- [Spring Security](#spring-security)
+    - [](#)
+- [Json Web Token ([JWT](https://jwt.io/))](#json-web-token-jwthttpsjwtio)
+- [Run Project](#run-project)
+- [API Test](#api-test)
+
+<!-- markdown-toc end -->
+
 
 Learn how to login with Kotlin with Java Spring Boot Framework and handle the JWT Token. We will Login using JWT( JSON Web Token ) which is the standard method for SPA Authentications. We will not use the traditional "Bearer method" but instead we will login using HttpOnly cookies which is a more secure authentication.
 
